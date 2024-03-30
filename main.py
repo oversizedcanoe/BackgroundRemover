@@ -1,18 +1,41 @@
 from datetime import datetime
 from BackgroundRemover import remove_background
+import sys
 
-# TODO This value depends on whether the average contents of the photo is similar to the background of the photo 
-# or not. For example with the light blue shirt on white background, I have to use ~0.05 otherwise the shirt
-# gets transparent-y. Whereas with the dark blue jeans I can set it to 0.4 with no issue. I should try to get
-# a "similar-ness" value which figures out how close to the background each pixel is -- the sharper the difference,
-# the larger this value can be.
-wiggle_room = 0.33
-input_filename = "./images/shirt.jpg"
+wiggle_room = None
+pic_name = 'shirt'
+
+# testing purposes only
+def is_float(string):
+    try:
+        float(string)
+        return True
+    except:
+        return False
+
+if len(sys.argv) > 1:
+    arg1 = sys.argv[1]
+    print(arg1)
+    # not perfect, if image name is numeric this doesn't work
+    if is_float(arg1):
+        wiggle_room = float(arg1)
+    else:
+        pic_name = arg1
+
+    if len(sys.argv) > 2:
+        arg2 = sys.argv[2]
+        print(arg2)
+        if is_float(arg2):
+            wiggle_room = float(arg2)
+        else:
+            pic_name = arg2
+
+input_filename = f"./images/{pic_name}.jpg"
 # Turn 12:59:59.123456 into 125959
 date_string = str(datetime.now().time()).split('.')[0].replace(':','')
-output_filename = f"./images/test-{date_string}-{wiggle_room}"
+output_filename = f"./images/test-{date_string}"
 
-# Can pass as background if needed
-white = (255,255,255)
+background_remover = remove_background(input_filename, output_filename, wiggle_room=wiggle_room)
 
-background_remover = remove_background(input_filename, output_filename, wiggle_room)
+
+
