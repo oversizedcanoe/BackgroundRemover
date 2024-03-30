@@ -35,7 +35,4 @@ input_filename = f"./images/{pic_name}.jpg"
 date_string = str(datetime.now().time()).split('.')[0].replace(':','')
 output_filename = f"./images/test-{date_string}"
 
-background_remover = remove_background(input_filename, output_filename, wiggle_room=wiggle_room)
-
-
-
+remove_background(input_filename, output_filename, wiggle_room=wiggle_room)
