@@ -34,4 +34,3 @@ Lots more can be done to improve this repo.
    - Could use the redmean to determine the closeness to background per pixel instead of doing +/- wiggle room -- although may be very slow
    - Allow user to pass in which corner to read background from
  - Improves docs to specify `venv`; figure out how to pip install this package?
-   - Make requirements.txt
