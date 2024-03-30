@@ -12,6 +12,7 @@ remove_background(input_filename, output_filename, wiggle_room, background_color
 # pixel colors can be within +/-10% of the background and not be made transparent.
 # If not passed, an optimal wiggle room will be calculated based on the contrast
 # between the background color and the average non-background color. Larger contrast = larger wiggle room.
+
 # background_color: Optional parameter for the RGB color of the background (i.e. (0,0,0) for white).
 # If not passed, the background color will be estimated based on the average color of the top left 5% of the image. 
 ```
