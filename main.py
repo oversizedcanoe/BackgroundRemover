@@ -5,7 +5,8 @@ import sys
 wiggle_room = None
 pic_name = 'shirt'
 
-# testing purposes only
+# testing purposes only. This just updates wiggle_room and pic_name if
+# passed by user on cmd line
 def is_float(string):
     try:
         float(string)
