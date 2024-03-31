@@ -30,7 +30,7 @@ def remove_background(input_filename: str, output_filename: str, wiggle_room: fl
     helper.set_wiggle_room(wiggle_room)
         
     for pixel_data in image_data:
-        if helper.is_close_to_background((pixel_data[0], pixel_data[1], pixel_data[2]), background_color):
+        if helper.is_close_to_background(pixel_data[0], pixel_data[1], pixel_data[2]):
             new_data.append(helper.TRANSPARENT_COLOR)
         else:
             new_data.append(pixel_data)
@@ -67,7 +67,7 @@ def __get_determined_background_color(image: Image.Image) -> tuple[int, int, int
 
     return (round(total_red/total_pixels), round(total_green/total_pixels), round(total_blue/total_pixels))
 
-def __get_ideal_wiggle_room(helper: _ColorHelper, background_color: tuple, image_data: list) -> float:
+def __get_ideal_wiggle_room(helper: _ColorHelper, image_data: list) -> float:
     """
     Determine the ideal wiggle room of an image. This is done by determining the contrast between
     foreground and background colors. A larger contrast means a larger wiggle room can be used. A
@@ -87,7 +87,7 @@ def __get_ideal_wiggle_room(helper: _ColorHelper, background_color: tuple, image
         red = pixel_data[0]
         green = pixel_data[1]
         blue = pixel_data[2]
-        if helper.is_close_to_background((red, green, blue), background_color) == False:
+        if helper.is_close_to_background(red, green, blue) == False:
             total_r += red
             total_g += green
             total_b += blue
@@ -100,7 +100,7 @@ def __get_ideal_wiggle_room(helper: _ColorHelper, background_color: tuple, image
     average_r = round(total_r / foreground_pixels_counted)
     average_g = round(total_g / foreground_pixels_counted)
     average_b = round(total_b / foreground_pixels_counted)
-    color_difference = helper.get_color_difference((average_r, average_g, average_b), background_color)
+    color_difference = helper.get_color_difference((average_r, average_g, average_b))
     ideal_wiggle_room = helper.get_ideal_wiggle_room(color_difference)
 
     return ideal_wiggle_room

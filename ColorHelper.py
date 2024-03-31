@@ -11,7 +11,7 @@ class _ColorHelper:
 
     def __init__(self, background_color):
         self.__wiggle_room: float = self.MIN_WIGGLE_ROOM
-        self.background_color: tuple[int, int] = background_color
+        self.background_color: tuple[int, int, int] = background_color
         self.min_red: int | None = None
         self.max_red: int | None = None
         self.min_blue: int | None = None
@@ -58,29 +58,29 @@ class _ColorHelper:
         self.__wiggle_room = wiggle_room_value
         self.__initialize_mins_and_maxes()
 
-    def is_close_to_background(self, color: tuple[int, int, int]) -> bool:
+    def is_close_to_background(self, color_r_value, color_g_value, color_b_value) -> bool:
         bg_r_value = self.background_color[0]
         bg_g_value = self.background_color[1]
         bg_b_value = self.background_color[2]
 
-        if color == (bg_r_value, bg_g_value, bg_b_value):
+        if (color_r_value, color_g_value, color_b_value) == (bg_r_value, bg_g_value, bg_b_value):
             return True
 
         if self.__mins_and_maxes_not_initialized():
             self.__initialize_mins_and_maxes()
 
-        red_in_range = color[0] in range(self.min_red, self.max_red)
-        green_in_range = color[1] in range(self.min_green, self.max_green)
-        blue_in_range = color[2] in range(self.min_blue, self.max_blue)
+        red_in_range = color_r_value in range(self.min_red, self.max_red)
+        green_in_range = color_g_value in range(self.min_green, self.max_green)
+        blue_in_range = color_b_value in range(self.min_blue, self.max_blue)
 
         return red_in_range and green_in_range and blue_in_range
 
-    def get_color_difference(self, average_color: tuple[int, int, int], background_color: tuple[int, int, int]) -> bool:
+    def get_color_difference(self, average_color: tuple[int, int, int]) -> bool:
         # Euclidean distance
-        delta_r_squared = (average_color[0] - background_color[0]) ** 2
-        delta_g_squared = (average_color[1] - background_color[1]) ** 2
-        delta_b_squared = (average_color[2] - background_color[2]) ** 2
-        average_r = round((average_color[0] + background_color[0]) / 2)
+        delta_r_squared = (average_color[0] - self.background_color[0]) ** 2
+        delta_g_squared = (average_color[1] - self.background_color[1]) ** 2
+        delta_b_squared = (average_color[2] - self.background_color[2]) ** 2
+        average_r = round((average_color[0] + self.background_color[0]) / 2)
 
         # redmean -> https://en.wikipedia.org/wiki/Color_difference
         term_1 = (2 + (average_r / 256)) * delta_r_squared
