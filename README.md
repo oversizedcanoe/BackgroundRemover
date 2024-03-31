@@ -13,12 +13,12 @@ remove_background(input_filename='images/myPhoto.jpg',
                   background_color=(0, 0, 0))
 ```
 
-#### `wiggle_room`
+#### wiggle_room
 `wiggle_room` is an optional parameter between 0 and 1. It determines how similar a pixels color can be to the background color and still be considered 'background'. For example, a value of 0.2 means that pixels can be +/- 20% similar to the background color and still be considered background pixels, and therefore made transparents. Note: This 20% range is applied to the R, G, and B value of the background color, so it's not perfect. Ideally it would use [redmean/Euclidean distance](https://en.wikipedia.org/wiki/Color_difference) like the auto-generated `wiggle_room` (more on that below) uses.
 
 If wiggle_room is not passed/left as `None`, the wiggle room will be auto-determined by roughly calculating the contrast between the average foreground and background color. The larger the contrast (i.e. foreground black, background white), the higher `wiggle_room` can be. The smaller the constrast (i.e. foreground black, background dark gray), the lower `wiggle_room` must be, otherwise you risk accidentally transparent-ifying foreground pixels.
 
-#### `background_color`
+#### background_color
 `background_color` is an optional parameter for the background color of the image (passed as an RGB color, as `tuple[int, int, int]` -- i.e. (0, 0, 0) for white). If not passed `background_color` will be estimated based on the average color of the top left 5% of the image. Ideally this could be flexible for the caller in the future. 
 
 #### Examples
