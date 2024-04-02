@@ -36,4 +36,3 @@ Lots more can be done to improve this repo.
  - Improvements on the auto determination of background color and wiggle room
    - Could use the redmean to determine the closeness to background per pixel instead of doing +/- wiggle room -- although may be very slow
    - Allow user to pass in which corner to read background from
- - Setup project to be able to be pip'd by following [these instructions](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
