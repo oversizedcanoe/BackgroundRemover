@@ -32,7 +32,7 @@ If wiggle_room is not passed/left as `None`, the wiggle room will be auto-determ
 `background_color` is an optional parameter for the background color of the image (passed as an RGB color, as `tuple[int, int, int]` -- i.e. (0, 0, 0) for white). If not passed `background_color` will be estimated based on the average color of the top left 5% of the image. Ideally this could be flexible for the caller in the future. 
 
 #### Examples
- - See the demos folder for some examples. The Shirt was done with auto wiggle room and background determination, and worked almost perfectly. The Apple has some bleed over. The library originally tried a wiggle room of ~0.37, but there was way too much bleed over, so I manually set it to 0.2
+ - See the [demos folder](https://github.com/oversizedcanoe/simple_background_remover/tree/main/demos) for some examples. The Shirt was done with auto wiggle room and background determination, and worked almost perfectly. The Apple has some bleed over. The library originally tried a wiggle room of ~0.37, but there was way too much bleed over, so I manually set it to 0.2. I also tried 0.13, which had less bleeding but a bit more background leftover.
 
 ---
 ## Todo
