@@ -1,6 +1,8 @@
 from PIL import Image
 from color_helper import _ColorHelper
 
+test = True
+
 def remove_background(input_filename: str, output_filename: str, wiggle_room: float = None, background_color: tuple[int, int, int] = None) -> None:
     """
     Removes the background of the provided image and saves it as a PNG.
