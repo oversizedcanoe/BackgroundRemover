@@ -22,16 +22,12 @@ If wiggle_room is not passed/left as `None`, the wiggle room will be auto-determ
 `background_color` is an optional parameter for the background color of the image (passed as an RGB color, as `tuple[int, int, int]` -- i.e. (0, 0, 0) for white). If not passed `background_color` will be estimated based on the average color of the top left 5% of the image. Ideally this could be flexible for the caller in the future. 
 
 #### Examples
-
-Demo examples can be seen in [images](https://github.com/oversizedcanoe/BackgroundRemover/tree/main/images). These were generated without specifying a `wiggle_room` or `background_color` value (so they were auto-determined).
-
-Sample usage can be seen in [main.py](https://github.com/oversizedcanoe/BackgroundRemover/blob/main/main.py).
+ - To do: post some images
 
 ---
 ## Todo
 Lots more can be done to improve this repo. 
  - General clean up -- I wrote this pretty quickly and many places could be cleaned up/refactored
-   - Clean up `main.py`
  - Validation on user inputs
  - Improvements on the auto determination of background color and wiggle room
    - Could use the redmean to determine the closeness to background per pixel instead of doing +/- wiggle room -- although may be very slow
