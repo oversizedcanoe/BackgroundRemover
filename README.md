@@ -1,11 +1,11 @@
-# BackgroundRemover
+# simple_background_remover
 This library is meant to be a quick and dirty background remover for simple images with solid(ish) background colors. Basically, a green screen. It does not have any sort of 'foreground detection'; it simply transparent-ifies pixels which are similar to the provided (or determined) background color.
 
 The processed files automatically get saved as PNGs.
 
 #### Usage
 ```python
-from BackgroundRemover import remove_background
+from simple_background_remover import remove_background
 
 remove_background(input_filename='images/myPhoto.jpg',
                   output_filename='images/processed/myPhoto', 
