@@ -1,1 +1,0 @@
-from simple_background_remover import simple_background_remover
