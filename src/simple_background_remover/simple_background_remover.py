@@ -36,7 +36,7 @@ def remove_background(input_filename: str, output_filename: str, wiggle_room: fl
             new_data.append(pixel_data)
 
     image.putdata(new_data)
-    file_name = f'{output_filename}-{round(helper.get_wiggle_room(), 3)}.png'
+    file_name = f'{output_filename}.png'
     image.save(file_name, "PNG")
     print(f'Image saved: \'{file_name}\'')
             

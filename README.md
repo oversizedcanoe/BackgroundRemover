@@ -3,12 +3,22 @@ This library is meant to be a quick and dirty background remover for simple imag
 
 The processed files automatically get saved as PNGs.
 
+#### Installation
+This library is [available on PyPi](https://pypi.org/project/simple-background-remover/) and can be installed with `python -m pip install simple_background_remover`.
+
 #### Usage
 ```python
-from simple_background_remover import remove_background
+from simple_background_remover import *
 
+simple_background_remover.remove_background(input_filename='images/myPhoto.jpg',
+                                            output_filename='images/processed/myPhoto', # Note no file extension
+                                            wiggle_room=0.15, 
+                                            background_color=(0, 0, 0))
+
+# Alternatively
+from simple_background_remover.simple_background_remover import remove_background
 remove_background(input_filename='images/myPhoto.jpg',
-                  output_filename='images/processed/myPhoto', 
+                  output_filename='images/processed/myPhoto', # Note no file extension
                   wiggle_room=0.15, 
                   background_color=(0, 0, 0))
 ```
@@ -22,12 +32,13 @@ If wiggle_room is not passed/left as `None`, the wiggle room will be auto-determ
 `background_color` is an optional parameter for the background color of the image (passed as an RGB color, as `tuple[int, int, int]` -- i.e. (0, 0, 0) for white). If not passed `background_color` will be estimated based on the average color of the top left 5% of the image. Ideally this could be flexible for the caller in the future. 
 
 #### Examples
- - To do: post some images
+ - See the demos folder for some examples. The Shirt was done with auto wiggle room and background determination, and worked almost perfectly. The Apple has some bleed over. The library originally tried a wiggle room of ~0.37, but there was way too much bleed over, so I manually set it to 0.2
 
 ---
 ## Todo
 Lots more can be done to improve this repo. 
  - General clean up -- I wrote this pretty quickly and many places could be cleaned up/refactored
+ - Add print statements if argument passed into `remove_background`
  - Validation on user inputs
  - Improvements on the auto determination of background color and wiggle room
    - Could use the redmean to determine the closeness to background per pixel instead of doing +/- wiggle room -- although may be very slow
