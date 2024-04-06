@@ -1,5 +1,5 @@
 from PIL import Image
-from ColorHelper import _ColorHelper
+from color_helper import _ColorHelper
 
 def remove_background(input_filename: str, output_filename: str, wiggle_room: float = None, background_color: tuple[int, int, int] = None) -> None:
     """
