@@ -164,4 +164,3 @@ cython_debug/
 Scripts
 pyvenv.cfg
 .vs
-test.py
