@@ -1,7 +1,12 @@
 from PIL import Image
 from .color_helper import _ColorHelper
+from .logger import Logger
 
-def remove_background(input_filename: str, output_filename: str, wiggle_room: float = None, background_color: tuple[int, int, int] = None) -> None:
+def remove_background(input_filename: str, 
+                      output_filename: str, 
+                      wiggle_room: float = None, 
+                      background_color: tuple[int, int, int] = None, 
+                      shouldLog: bool = True) -> None:
     """
     Removes the background of the provided image and saves it as a PNG.
     
@@ -15,17 +20,24 @@ def remove_background(input_filename: str, output_filename: str, wiggle_room: fl
 
     See https://github.com/oversizedcanoe/BackgroundRemover for more detailed info.
     """
+    if shouldLog:
+        Logger.log(f'Removing background from {input_filename}, wiggle_room={wiggle_room}, background_color={background_color}')
+
     image = Image.open(input_filename).convert("RGBA")
     image_data = image.getdata()
     new_data = []
 
     if background_color is None:
         background_color = __get_determined_background_color(image)
+        if shouldLog:
+            Logger.log(f'background_color auto-determined to be: {background_color}')
 
     helper = _ColorHelper(background_color)
 
     if wiggle_room is None:
         wiggle_room = __get_ideal_wiggle_room(helper, image_data)
+        if shouldLog:
+            Logger.log(f'wiggle_room auto-determined to be: {wiggle_room}')
 
     helper.set_wiggle_room(wiggle_room)
         
@@ -38,8 +50,8 @@ def remove_background(input_filename: str, output_filename: str, wiggle_room: fl
     image.putdata(new_data)
     file_name = f'{output_filename}.png'
     image.save(file_name, "PNG")
-    print(f'Image saved: \'{file_name}\'')
-            
+    if shouldLog:
+        Logger.log(f'Image saved: \'{file_name}\'')
 
 def __get_determined_background_color(image: Image.Image) -> tuple[int, int, int]:
     """

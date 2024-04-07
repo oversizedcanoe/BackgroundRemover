@@ -38,7 +38,7 @@ If wiggle_room is not passed/left as `None`, the wiggle room will be auto-determ
 ## Todo
 Lots more can be done to improve this repo. 
  - General clean up -- I wrote this pretty quickly and many places could be cleaned up/refactored
- - Add print statements if argument passed into `remove_background`
+ - Improve logging to use python `logging` library
  - Validation on user inputs
  - Improvements on the auto determination of background color and wiggle room
    - Could use the redmean to determine the closeness to background per pixel instead of doing +/- wiggle room -- although may be very slow
